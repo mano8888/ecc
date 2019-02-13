@@ -1,0 +1,28 @@
+- hosts: all
+  tasks:
+   - name: apache2
+     apt: name=apache state=start
+   - notify: 
+   - start apache2
+
+- hosts: all
+  tasks: 
+  - name: git 
+    apt: name=apt-get install git state=start
+  - notify: 
+  -start git package
+
+- hosts: all
+  tasks:
+  - name: apache maven
+    apt: name=apt-get install maven state=start
+  - notify:
+ - start maven package
+
+- hosts: ubuntu
+  tasks:
+  - name: nginx
+    service: name=install nginx state=start
+    ansible_distribution manager=="ubuntu" 
+  - notify:
+   - start nginx service
